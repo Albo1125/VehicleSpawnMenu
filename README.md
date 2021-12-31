@@ -1,5 +1,5 @@
 # VehicleSpawnMenu
-VehicleSpawnMenu is a resource for FiveM by Albo1125 that provides vehicle spawn menu functionality. It is freely available at [https://github.com/Albo1125/VehicleSpawnMenu](https://github.com/Albo1125/VehicleSpawnMenu)
+VehicleSpawnMenu is a resource for FiveM by Albo1125 that provides vehicle spawn menu functionality. It is available at [https://github.com/Albo1125/VehicleSpawnMenu](https://github.com/Albo1125/VehicleSpawnMenu)
 
 ## Installation & Usage
 1. Download the latest release.
