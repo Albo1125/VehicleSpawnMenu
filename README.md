@@ -21,7 +21,7 @@ JSON reference is as follows.
 
 ### SubCategory
 * "Name" string indicating the (unique?) name of this SubCategory
-* Either a "SubCategories" or "VehicleSpawns" array containing further SubCategory or VehicleSpawn entries.
+* A "SubCategories" and/or "VehicleSpawns" array containing further SubCategory or VehicleSpawn entries.
 
 ### VehicleSpawn
 If this is selected, a vehicle will be spawned with the appropriate properties.

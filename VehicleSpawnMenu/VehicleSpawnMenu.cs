@@ -23,7 +23,7 @@ namespace VehicleSpawnMenu
             _menuPool.Add(mainMenu);
             PopulatedMenus.Add(mainMenu);
 
-            //Deserialize the loadouts.json file.
+            //Deserialize the vehicles.json file.
             string resourceName = API.GetCurrentResourceName();
             string categories = API.LoadResourceFile(resourceName, "vehicles.json");
 
@@ -54,7 +54,7 @@ namespace VehicleSpawnMenu
             mainMenu.RefreshIndex();
             _menuPool.RefreshIndex();
 
-            //Add an event handler for the /av command.
+            //Add an event handler for the /vs command.
             EventHandlers["VehicleSpawnMenu:ShowMenu"] += new Action<dynamic>((dynamic) =>
             {
                 mainMenu.Visible = true;
