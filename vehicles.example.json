@@ -1,0 +1,89 @@
+[
+    {
+        "Name": "Police",
+        "SubCategories": [
+            {
+                "Name": "Response",
+                "SubCategories": [
+                    {
+                        "Name": "Hyundai",
+                        "VehicleSpawns": [
+                            {
+                                "Name": "i30",
+                                "VehicleModelName": "police",
+                                "Plate": "PE12 GAC"
+                            }
+                        ]
+                    },
+                    {
+                        "Name": "Peugeot",
+                        "VehicleSpawns": [
+                            {
+                                "Name": "308",
+                                "VehicleModelName": "police2",
+                                "Plate": "MX17 BDE",
+                                "LiveryNumber": 18
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Armed Policing",
+                "SubCategories": [
+                    {
+                        "Name": "BMW",
+                        "VehicleSpawns": [
+                            {
+                                "Name": "X1",
+                                "VehicleModelName": "police3",
+                                "Plate": "PO61 ABC"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Name": "Roads Policing",
+                "SubCategories": [
+                    {
+                        "Name": "BMW",
+                        "VehicleSpawns": [
+                            {
+                                "Name": "330d xDrive",
+                                "VehicleModelName": "police4",
+                                "Plate": "DK15 ABC",
+                                "LiveryNumber": 2
+                            },
+                            {
+                                "Name": "330d xDrive",
+                                "VehicleModelName": "police5",
+                                "Plate": "GZ21 LBD"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "Name": "Ambulance",
+        "SubCategories": [
+            {
+                "Name": "NWAS",
+                "SubCategories": [
+                    {
+                        "Name": "Mercedes",
+                        "VehicleSpawns": [
+                            {
+                                "Name": "Sprinter",
+                                "VehicleModelName": "ambulance",
+                                "Plate": "AB12 CDE"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
