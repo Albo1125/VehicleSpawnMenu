@@ -13,24 +13,62 @@ namespace VehicleSpawnMenu
         public static MenuPool _menuPool = new MenuPool();
         private static UIMenu mainMenu;
         private static List<VehicleSpawnSubMenu> mainSubMenus = new List<VehicleSpawnSubMenu>();
-        protected bool initialized = false;
+        protected bool usingJson = false;
+        private static string currentCategoriesJsonString = "";
 
         public static List<UIMenu> PopulatedMenus = new List<UIMenu>();
 
         public VehicleSpawnMenu()
         {
-            mainMenu = new UIMenu("Vehicles", "");
-            _menuPool.Add(mainMenu);
-            PopulatedMenus.Add(mainMenu);
-
             //Deserialize the vehicles.json file.
             string resourceName = API.GetCurrentResourceName();
             string categories = API.LoadResourceFile(resourceName, "vehicles.json");
-
-            VehicleCategory[] MainCategories = JsonConvert.DeserializeObject<VehicleCategory[]>(categories, new JsonSerializerSettings
+            if (!string.IsNullOrWhiteSpace(categories))
             {
-                TypeNameHandling = TypeNameHandling.Auto,
-                
+                usingJson = true;
+                Debug.WriteLine("Populating menu from vehicles.json file");
+                populateMenus(categories);
+            }
+
+            //Add an event handler for the /vs command.
+            EventHandlers["VehicleSpawnMenu:ShowMenu"] += new Action<dynamic>((dynamic) =>
+            {
+                if (usingJson)
+                {
+                    mainMenu.Visible = true;
+                }
+                else
+                {
+                    TriggerServerEvent("VehicleSpawnMenu:RequestCategoriesJsonString");
+                }
+            });
+            EventHandlers["VehicleSpawnMenu:CategoriesJsonString"] += new Action<string>((string categoriesJsonString) =>
+            {
+                if (!usingJson)
+                {
+                    if (currentCategoriesJsonString != categoriesJsonString)
+                    {
+                        populateMenus(categoriesJsonString);
+                    }
+                    mainMenu.Visible = true;
+                }
+            });
+
+            Main();
+        }
+
+        public void populateMenus(string categoriesJsonString)
+        {
+            mainMenu = new UIMenu("Vehicles", "");
+            _menuPool.CloseAllMenus();
+            _menuPool = new MenuPool();
+            PopulatedMenus.Clear();
+            _menuPool.Add(mainMenu);
+            PopulatedMenus.Add(mainMenu);
+
+            VehicleCategory[] MainCategories = JsonConvert.DeserializeObject<VehicleCategory[]>(categoriesJsonString, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Auto
             });
 
             //Create a submenu for every 'main' category.
@@ -39,12 +77,12 @@ namespace VehicleSpawnMenu
             {
                 VehicleSpawnSubMenu submenu = new VehicleSpawnSubMenu(cat, true);
                 mainSubMenus.Add(submenu);
-                
+
                 mainMenu.AddItem(submenu.PreviousMenuItem);
                 mainMenu.BindMenuToItem(submenu.UISubMenu, submenu.PreviousMenuItem);
 
                 PopulatedMenus.Add(submenu.UISubMenu);
-                _menuPool.Add(submenu.UISubMenu);    
+                _menuPool.Add(submenu.UISubMenu);
                 submenu.UISubMenu.RefreshIndex();
             }
 
@@ -53,14 +91,6 @@ namespace VehicleSpawnMenu
             mainMenu.MouseEdgeEnabled = true;
             mainMenu.RefreshIndex();
             _menuPool.RefreshIndex();
-
-            //Add an event handler for the /vs command.
-            EventHandlers["VehicleSpawnMenu:ShowMenu"] += new Action<dynamic>((dynamic) =>
-            {
-                mainMenu.Visible = true;
-            });
-
-            Main();
         }
 
         /// <summary>

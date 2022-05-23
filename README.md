@@ -9,14 +9,19 @@ VehicleSpawnMenu is a resource for FiveM by Albo1125 that provides vehicle spawn
 ensure VehicleSpawnMenu
 ```
 
-4. Create a file called `vehicles.json` and save your menu setup to it. See below for further guidance.
+4. Optionally, create a file called `vehicles.json` and save your menu setup to it. See `Customising your vehicles` for further guidance.
 5. Optionally, customise the command in `sv_VehicleSpawnMenu.lua`.
 
 ## Commands & Controls
 * /vs - Opens the VehicleSpawnMenu.
 
 ## Customising your vehicles
-Customise your vehicles in the `vehicles.json` file. You can add as many `SubCategories` and `VehicleSpawns` to the root array as you like. An example `vehicles.example.json` file is included.
+You have two options for loading your VehicleSpawnMenu.
+
+* Firstly, you can add a `vehicles.json` file. If this file is created inside the resource folder, it will always be used.
+* Secondly, you can load your `vehicles.json` contents dynamically. If no `vehicles.json` file is present in the resource folder, the client will trigger a server event `VehicleSpawnMenu:RequestCategoriesJsonString()` when they use the /vs command. The client will then listen for a `VehicleSpawnMenu:CategoriesJsonString(jsonString)` event from the server. `jsonString` should be a valid JSON string in the `vehicles.json` format.
+
+You can add as many `SubCategories` and `VehicleSpawns` to the root array as you like. An example `vehicles.example.json` file is included.
 JSON reference is as follows.
 
 ### SubCategory
