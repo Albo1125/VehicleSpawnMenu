@@ -49,6 +49,7 @@ namespace VehicleSpawnMenu
                     if (currentCategoriesJsonString != categoriesJsonString)
                     {
                         populateMenus(categoriesJsonString);
+                        currentCategoriesJsonString = categoriesJsonString;
                     }
                     mainMenu.Visible = true;
                 }
