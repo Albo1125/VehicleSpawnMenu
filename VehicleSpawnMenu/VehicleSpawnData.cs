@@ -56,6 +56,8 @@ namespace VehicleSpawnMenu
                     {
                         API.SetVehicleLivery(veh.Handle, LiveryNumber);
                     }
+
+                    BaseScript.TriggerServerEvent("VehicleSpawnMenu:VehicleSpawned", Plate);
                 }
                 else
                 {

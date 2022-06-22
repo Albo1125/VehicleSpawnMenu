@@ -29,7 +29,7 @@ JSON reference is as follows.
 * A "SubCategories" and/or "VehicleSpawns" array containing further SubCategory or VehicleSpawn entries.
 
 ### VehicleSpawn
-If this is selected, a vehicle will be spawned with the appropriate properties.
+If this is selected, a vehicle will be spawned with the appropriate properties. The spawning client will also trigger a server event as follows: `VehicleSpawnMenu:VehicleSpawned(plate)`.
 * "Name" string indicating the display name of this VehicleSpawn
 * "VehicleModelName" is the ingame model name/spawncode of this vehicle
 * "Plate" the plate to set on this vehicle when it is spawned
